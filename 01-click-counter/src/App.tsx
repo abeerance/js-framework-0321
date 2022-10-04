@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { ClickCounterCard } from "./common/components/click-counter-card";
+import { ClickCounterCard } from "./common/components/card/click-counter-card";
 import "./styles/App.css";
 
 function App() {
