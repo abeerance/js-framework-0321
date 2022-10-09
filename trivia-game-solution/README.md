@@ -12,8 +12,6 @@ npx create-react-app@next --scripts-version=@next --template=typescript@next 03-
 
 Ordnerstruktur einbauen, css styles und logo verschieben sowie Imports ausbessern:
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7fc10b5e-37d2-412b-b354-ac5d18bd5fda/Untitled.jpeg)
-
 1. Install MUI, React Router, React Hook Form und Framer Motion
 
 ```css
@@ -24,36 +22,24 @@ npm i framer-motion
 npm i axios
 ```
 
-1. Themes erstellen und landing page vorbereiten
+2. Themes erstellen und landing page vorbereiten
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3505a309-0175-4f9f-b059-2077748b1155/Untitled.jpeg)
+3. Trivia card erstellen:
 
-1. Trivia card erstellen:
+4. Implement Trivia card in App
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f273563f-3587-4681-827e-964e1a50f89f/Untitled.jpeg)
-
-1. Implement Trivia card in App
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f3da2226-c6e4-496c-885f-3bbd1e31ee68/Untitled.jpeg)
-
-1. Create form (style) in trivia card in App. 
+5. Create form (style) in trivia card in App. 
 **NUR NUMBER UND CATEGORY IMPLEMENTIEREN. ANDERE + BUTTON KLASSENAUFGABE → 20 MINUTEN**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8d95420c-42bb-4e63-bbae-0a6d00202790/Untitled.jpeg)
+6. Generate apiClient.ts
 
-1. Generate apiClient.ts
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46544d0a-df24-44d0-94f4-98d774707843/Untitled.jpeg)
-
-1. Get category  information from API through API-Client
+7. Get category  information from API through API-Client
 
 ```css
 https://opentdb.com/api_category.php
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/140da29b-bb24-4007-93c3-8ead3ad464d1/Untitled.jpeg)
-
-1. Implement useState und useEffect for categories (erklären wie man setAllCategories richtig implementiert mit console.log(allCategories)
+8. Implement useState und useEffect for categories (erklären wie man setAllCategories richtig implementiert mit console.log(allCategories)
 
 ```tsx
 	export const TriviaCard = () => {
@@ -76,7 +62,7 @@ https://opentdb.com/api_category.php
 	console.log(allCategories)
 ```
 
-1. allCategories mappen und im select implementieren
+9. allCategories mappen und im select implementieren
 
 ```tsx
 <FormControl sx={{ width: "100%", marginTop: "25px" }}>
@@ -115,19 +101,15 @@ https://opentdb.com/api_category.php
   }, [setAllCategories]);
 ```
 
-1. utils.ts und utilUtils für Difficulty und Type erstellen
+10. utils.ts und utilUtils für Difficulty und Type erstellen
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/638f6b03-7a20-464c-bc9f-93f444ee90d4/Untitled.jpeg)
-
-1. i18next erklären und installieren über npm:
+11. i18next erklären und installieren über npm:
 
 ```tsx
 npm i i18next react-i18next
 ```
 
-1. Implement i18next
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/20de9972-d7f6-40ea-a9a0-905f6ed0f0db/Untitled.jpeg)
+12. Implement i18next
 
 ```tsx
 config.ts
@@ -195,7 +177,7 @@ en.json
 }
 ```
 
-1. Adjust strings to react i18next in trivia-card.tsx
+13. Adjust strings to react i18next in trivia-card.tsx
 
 ```tsx
 
@@ -274,7 +256,7 @@ en.json
             marginBottom: "10px",
             background: teal[900],
           }}
-					type="submit"
+	type="submit"
         >
           {t("card.generate")}
         </Button>
@@ -285,7 +267,7 @@ en.json
 
 ```
 
-1. Implement difficulties and type thanks to map & translation
+14. Implement difficulties and type thanks to map & translation
 
 ```tsx
 <FormControl sx={{ width: "100%", marginTop: "25px" }}>
@@ -324,7 +306,7 @@ en.json
 </FormControl>
 ```
 
-1. Implement states, value, onChange and handleSubmit
+15. Implement states, value, onChange and handleSubmit
 
 ```tsx
 trivia-card.tsx
@@ -510,9 +492,7 @@ export const TriviaCard = () => {
 };
 ```
 
-1. Es ist etwas übersichtlich. Select Dropdown mit normaler Funktion können zu einer reusable Komponente gemacht werden (difficulties und type):
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5dd818da-6c76-47f1-b0fa-63ec5d69a4b3/Untitled.jpeg)
+16. Es ist etwas übersichtlich. Select Dropdown mit normaler Funktion können zu einer reusable Komponente gemacht werden (difficulties und type):
 
 ```tsx
 select-dropdown.tsx
@@ -745,7 +725,7 @@ export const TriviaCard = () => {
 };
 ```
 
-1. Damit wir conditional rendering von generieren zum anzeigen von den Karten machen können, muss der useState von TriviaQuestions in das Parent element verschoben werden
+17. Damit wir conditional rendering von generieren zum anzeigen von den Karten machen können, muss der useState von TriviaQuestions in das Parent element verschoben werden
 
 ```tsx
 App.tsx
@@ -800,10 +780,8 @@ export const TriviaCard = ({ setTriviaQuestions }: TriviaCardProps) => {
 
 ```
 
-1. Neue trivia-questions.tsx Komponente erstellen. 
+18. Neue trivia-questions.tsx Komponente erstellen. 
 Conditional rendering in App.tsx implementieren if triviaQuestions === undefined. Button für reset State auch aktivieren um neue Fragen zu generieren
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ee631ee2-36e1-44fd-b978-59752a3f7db7/Untitled.jpeg)
 
 ```tsx
 trivia-questions.tsx
@@ -922,7 +900,7 @@ function App() {
 export default App;
 ```
 
-1. Grid-Box für fragen erstellen
+19. Grid-Box für fragen erstellen
 
 ```tsx
 trivia-questions.tsx
@@ -1004,11 +982,7 @@ a {
 }
 ```
 
-1. trivia-question-cards.tsx erstellen und mit Hilfe von map in trivia-questions.tsx einfügen. Neues interface in types.ts erstellen damit die Axiosresponse richtig implementiert werden kann.
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/909a566b-4d28-4a39-a93c-50204db334e4/Untitled.jpeg)
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e06b6dae-bd9e-4955-b67d-ba02c9fb6557/Untitled.jpeg)
+20. trivia-question-cards.tsx erstellen und mit Hilfe von map in trivia-questions.tsx einfügen. Neues interface in types.ts erstellen damit die Axiosresponse richtig implementiert werden kann.
 
 ```tsx
 types.ts 
@@ -1156,7 +1130,7 @@ export const TriviaQuestions = ({
 };
 ```
 
-1. Grid in trivia-qustions-card.tsx
+21. Grid in trivia-qustions-card.tsx
 
 ```tsx
 trivia-questions-card.tsx
@@ -1207,7 +1181,7 @@ export const TriviaQuestionsCard = ({
 };
 ```
 
-1. Implement generate random colors
+22. Implement generate random colors
 
 ```tsx
 trivia-questions-card.tsx
@@ -1268,9 +1242,7 @@ export const TriviaQuestionsCard = ({
 };
 ```
 
-1. Create ModalComponent, Implement onClick on Card and openModal
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ac3313e9-ebae-42e8-9ef3-47b6f3db6a6c/Untitled.jpeg)
+23. Create ModalComponent, Implement onClick on Card and openModal
 
 ```tsx
 modal-component.tsx
@@ -1396,7 +1368,7 @@ export const TriviaQuestionsCard = ({
 };
 ```
 
-1. Decode special html characters
+24. Decode special html characters
 
 ```tsx
 npm i html-react-parser
@@ -1414,7 +1386,7 @@ import parse from "html-react-parser";
 ...
 ```
 
-1. Gather all answers in one array in modal-component.tsx inside a useEffect so it doesn’t create too many rerenders. Fix incorrectAnswers type.
+25. Gather all answers in one array in modal-component.tsx inside a useEffect so it doesn’t create too many rerenders. Fix incorrectAnswers type.
 Create new reusable question-card.tsx component:
 
 ```tsx
@@ -1449,8 +1421,6 @@ export const ModalComponent = ({
   console.log(allAnswers);
 ...
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3d11d58d-d12b-4245-9431-51874f5c37e1/Untitled.jpeg)
 
 ```tsx
 question-card.tsx
@@ -1551,7 +1521,7 @@ export const QuestionCard = ({ answer }: QuestionCardProps) => {
 };
 ```
 
-1. Implement answer Check, prop correct answer to question-card.tsx
+26. Implement answer Check, prop correct answer to question-card.tsx
 ```
 question-card.tsx
 
