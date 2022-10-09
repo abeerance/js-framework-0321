@@ -1,0 +1,31 @@
+{
+    "home": {
+        "welcome": "This is a trivia game"
+      
+    },
+    "card": {
+        "combination": " Pick out a combination to generate trivia cards",
+        "category": "Category",
+        "difficulty": "Difficulty",
+        "type": "Type",
+        "generate": "Generate Trivia Cards",
+        "difficulties": {
+            "any": "Any Difficulty",
+            "easy": "Easy",
+            "medium": "Medium",
+            "hard": "Hard"
+        },
+        "types": {
+            "any": "Any Type",
+            "multiple": "Multiple Choice",
+            "boolean": "True / False"
+        }
+    },
+    "triviaQuestions": {
+        "generateNew": "Generate other questions",
+        "pickCard": "Pick a card to get the question",
+        "question": "Question",
+        "wrong": "Wrong",
+        "correct": "Correct"
+    }
+}
