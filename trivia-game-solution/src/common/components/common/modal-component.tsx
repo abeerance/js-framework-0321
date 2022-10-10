@@ -80,13 +80,13 @@ export const ModalComponent = ({
               <Typography
                 sx={{ fontWeight: "bold", fontSize: "50px", color: green[800] }}
               >
-                {t("triviaQuestions.wrong")}
+                {t("triviaQuestions.correct")}
               </Typography>
             ) : (
               <Typography
                 sx={{ fontWeight: "bold", fontSize: "50px", color: red[800] }}
               >
-                {t("triviaQuestions.correct")}
+                {t("triviaQuestions.wrong")}
               </Typography>
             )}
           </Box>
