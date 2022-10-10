@@ -20,3 +20,11 @@ a {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.navigation-button {
+  background: none;
+}
+
+.navigation-button-active {
+  background: #FF8811;
+}
