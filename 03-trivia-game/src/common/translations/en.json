@@ -3,7 +3,7 @@
         "welcome": "This is a trivia game"
     },
     "card": {
-        "combination": " Pick out a combination to generate trivia cards",
+        "combination": "Pick out a combination to generate trivia cards",
         "category": "Category",
         "difficulty": "Difficulty",
         "type": "Type",

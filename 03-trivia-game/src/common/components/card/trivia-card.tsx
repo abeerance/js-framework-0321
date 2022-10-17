@@ -7,17 +7,28 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from "@mui/material";
 import { teal } from "@mui/material/colors";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { apiClient } from "../../data/api-client";
 import { Globals } from "../../utils/utils";
+import { SelectDropdown } from "../common/select-dropdown";
 
-export const TriviaCard = () => {
+type TriviaCardProps = {
+  setTriviaQuestions: React.Dispatch<React.SetStateAction<any>>;
+};
+
+export const TriviaCard = ({ setTriviaQuestions }: TriviaCardProps) => {
   const [allCategories, setAllCategories] = useState<[]>();
+  const [selectedNumberOfQuestions, setSelectedNumberOfQuestions] =
+    useState<number>(10);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>("");
+  const [selectedType, setSelectedType] = useState<string>("");
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -31,6 +42,26 @@ export const TriviaCard = () => {
     };
     getAllCategories();
   }, [setAllCategories]);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const apiResponse = await apiClient.get(
+      `api.php?amount=${selectedNumberOfQuestions}${
+        selectedCategory !== "" ? `&category=${selectedCategory}` : ""
+      }${
+        selectedDifficulty !== "" && selectedDifficulty !== "any"
+          ? `&difficulty=${selectedDifficulty}`
+          : ""
+      }${
+        selectedType !== "" && selectedType !== "any"
+          ? `&type=${selectedType}`
+          : ""
+      }`
+    );
+
+    setTriviaQuestions(apiResponse);
+  };
 
   return (
     <>
@@ -47,7 +78,7 @@ export const TriviaCard = () => {
           >
             {t("card.combination")}
           </Typography>
-          <form>
+          <form noValidate onSubmit={handleSubmit}>
             <Box
               sx={{
                 display: "flex",
@@ -61,45 +92,62 @@ export const TriviaCard = () => {
                 label="Number"
                 fullWidth
                 type="number"
+                inputProps={{ inputMode: "numeric", pattern: "{1, 20}" }}
+                value={selectedNumberOfQuestions}
+                onChange={(e) => {
+                  setSelectedNumberOfQuestions(Number(e.target.value));
+                }}
                 sx={{ marginTop: "25px" }}
               />
               <FormControl fullWidth sx={{ marginTop: "25px" }}>
-                <InputLabel id="category-label">Category</InputLabel>
-                <Select labelId="category-label" id="category" label="Category">
+                <InputLabel id="category-label">
+                  {t("card.category")}
+                </InputLabel>
+                <Select
+                  labelId="category-label"
+                  id="category"
+                  label="Category"
+                  value={selectedCategory}
+                  onChange={(event: SelectChangeEvent) => {
+                    setSelectedCategory(event.target.value as string);
+                  }}
+                >
                   {allCategories &&
                     allCategories.map(
                       (category: { id: number; name: string }) => (
-                        <MenuItem key={category.id} value={category.name}>
+                        <MenuItem key={category.id} value={category.id}>
                           {category.name}
                         </MenuItem>
                       )
                     )}
                 </Select>
               </FormControl>
-              <FormControl fullWidth sx={{ marginTop: "25px" }}>
-                <InputLabel id="difficulty-label">Difficulty</InputLabel>
-                <Select
-                  labelId="difficulty-label"
-                  id="difficulty"
-                  label="Difficulty"
-                >
-                  {Globals.difficulties.map((difficulty: string) => (
-                    <MenuItem key={difficulty} value={difficulty}>
-                      {difficulty}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <FormControl fullWidth sx={{ marginTop: "25px" }}>
-                <InputLabel id="type-label">Type</InputLabel>
-                <Select labelId="type-label" id="type" label="Type">
-                  {Globals.types.map((type: string) => (
-                    <MenuItem key={type} value={type}>
-                      {type}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <SelectDropdown
+                inputLabelId={"difficulty-input-label"}
+                inputTranslation={t("card.difficulty")}
+                labelId={"difficulty-label"}
+                id={"difficulty"}
+                label={"Difficulty"}
+                value={selectedDifficulty}
+                onChange={(event: SelectChangeEvent) => {
+                  setSelectedDifficulty(event.target.value as string);
+                }}
+                elements={Globals.difficulties}
+                translationKey={"difficulties"}
+              />
+              <SelectDropdown
+                inputLabelId={"type-input-label"}
+                inputTranslation={t("card.type")}
+                labelId={"type-label"}
+                id={"type"}
+                label={"Type"}
+                value={selectedType}
+                onChange={(event: SelectChangeEvent) => {
+                  setSelectedType(event.target.value as string);
+                }}
+                elements={Globals.types}
+                translationKey={"types"}
+              />
               <Button
                 variant="contained"
                 sx={{
@@ -109,6 +157,7 @@ export const TriviaCard = () => {
                   marginBottom: "10px",
                   background: teal[900],
                 }}
+                type="submit"
               >
                 {t("card.generate")}
               </Button>

@@ -20,3 +20,12 @@ a {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.grid-container {
+  display: grid !important;
+  width: 100%;
+  gap: 10px !important;
+  grid-template-columns: repeat(auto-fit, 110px) !important;
+  justify-content: center;
+  flex-flow: nowrap !important;
+}

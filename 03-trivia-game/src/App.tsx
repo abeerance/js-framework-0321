@@ -1,5 +1,7 @@
 import { Box, createTheme, ThemeProvider } from "@mui/material";
+import { useState } from "react";
 import { TriviaCard } from "./common/components/card/trivia-card";
+import { TriviaQuestions } from "./common/components/trivia-questions/trivia-questions";
 import "./common/i18n/config";
 import "./styles/App.css";
 
@@ -16,6 +18,8 @@ const appTheme = createTheme({
 });
 
 function App() {
+  const [triviaQuestions, setTriviaQuestions] = useState<any>();
+
   return (
     <ThemeProvider theme={appTheme}>
       <Box
@@ -35,7 +39,14 @@ function App() {
             alignItems: "center",
           }}
         >
-          <TriviaCard />
+          {triviaQuestions === undefined ? (
+            <TriviaCard setTriviaQuestions={setTriviaQuestions} />
+          ) : (
+            <TriviaQuestions
+              triviaQuestions={triviaQuestions}
+              setTriviaQuestions={setTriviaQuestions}
+            />
+          )}
         </Box>
       </Box>
     </ThemeProvider>
